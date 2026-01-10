@@ -1,97 +1,421 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+sidebar_position: 1
+title: Welcome To CocoBase
+slug: /
 ---
 
-## Setting up
+# Cocobase - The Backend That Just Works
 
-Get your documentation site up and running in minutes.
+> **Build faster. Ship sooner. Scale effortlessly.**
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+Cocobase is a modern Backend-as-a-Service (BaaS) platform that eliminates the complexity of backend development. Focus on creating amazing user experiences while we handle your data, authentication, and infrastructure.
 
-## Make it yours
+## Why Cocobase?
 
-Design a docs site that looks great and empowers your users.
+### **Lightning Fast Setup**
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+Go from idea to MVP in minutes, not weeks. No server configuration, no database setup, no authentication headaches.
 
-## Create beautiful pages
+<Tabs> 
+  <Tab title="JavaScript"> 
+    ```typescript 
+    import { Cocobase } from "cocobase";
 
-Everything you need to create world-class documentation.
+    // This is literally all you need to start
+    const db = new Cocobase({ apiKey: "YOUR_API_KEY" });
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+    await db.createDocument("users", {
+      name: "John"
+    });
+    ```
+  </Tab>
 
-## Need inspiration?
+  <Tab title="Dart">
+    ```dart
+    import 'package:coco_base_flutter/coco_base_flutter.dart';
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+    void main() async {
+      // Create a configuration
+      final config = CocobaseConfig(
+        apiKey: "YOUR_API_KEY_HERE",
+        baseUrl: "https://api.cocobase.buzz", // Optional, defaults to this
+      );
+
+      // Initialize the database client
+      final db = Cocobase(config);
+
+      // Ready to use!
+      await db.createDocument('users', {
+        'name': 'John',
+      });
+    }
+    ```
+  </Tab>
+
+  <Tab title="Go"> 
+    ```go 
+    import "github.com/cocobase/cocobase-go"
+
+    // This is literally all you need to start
+    client := cocobase.NewClient(cocobase.Config{
+      APIKey: "your-api-key",
+    })
+
+    // Create context
+    ctx := context.Background()
+
+    doc, err := db.CreateDocument(ctx, "users", map[string]any{
+      "name": "John",
+    })
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    from cocobase import Cocobase
+
+    # This is literally all you need to start
+    db = Cocobase(api_key="YOUR_API_KEY")
+
+    db.create_document("users", {
+        "name": "John"
+    })
+    ```
+  </Tab>
+
+  <Tab title="http"> 
+    ```http 
+    POST /collections/users 
+    Authorization: Bearer YOUR_API_KEY
+    Content-Type: application/json
+
+    {
+      "name": "John"
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### **Authentication Made Simple**
+
+Built-in user management that actually works. Registration, login, sessions, and user profiles - all handled seamlessly.
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```typescript
+    await db.auth.register(
+      'email@gmail.com',
+      'password12',
+      {
+        full_name: "Stony Tech",
+        address: "123 Lost avenue"
+      }
+    );
+    ```
+  </Tab>
+
+  <Tab title="Dart">
+    ```dart
+    await db.register(
+      email: 'user@example.com',
+      password: 'SecurePassword123!',
+    );
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```go
+    err := db.Register(ctx, "user@example.com", "securePassword123", nil)
+
+    if err != nil {
+        log.Fatal(err)
+    }
+    ```
+  </Tab>
+
+  <Tab title="http">
+    ```http
+    POST /auth/register
+    Authorization: Bearer PROJECT_API_KEY
+    Content-Type: application/json
+
+    {
+      "projectId": "PROJECT_ID",
+      "email": "user@example.com",
+      "password": "password",
+      "data": {
+        "role": "admin"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### **Real-time Data Management**
+
+Store, retrieve, and manage your application data with a clean, intuitive API. No SQL knowledge required.
+
+### **Developer Experience First**
+
+TypeScript-native, excellent error handling, and documentation that doesn't make you cry.
+
+## Perfect For
+
+### **Rapid Prototyping**
+
+Need to validate an idea quickly? Cocobase gets you from concept to working prototype in hours.
+
+### **Mobile & Web Apps**
+
+Build modern applications without worrying about backend complexity. Works seamlessly with React, Vue, Angular, React Native, and Flutter.
+
+### **Startups & MVPs**
+
+Scale from zero to thousands of users without changing a single line of backend code.
+
+### **Solo Developers**
+
+You're a frontend wizard but backend feels like dark magic? We've got you covered.
+
+### **Learning Projects**
+
+Students and bootcamp graduates can focus on learning frontend skills without backend overwhelm.
+
+## Key Features
+
+### **Instant Database**
+
+- **NoSQL Collections**: Store any JSON data structure
+- **Real-time Updates**: Changes sync instantly across all clients
+- **Automatic Indexing**: Fast queries without database optimization headaches
+- **Type Safety**: Full TypeScript support with generic types
+
+### **Complete Authentication System**
+
+- **User Registration & Login**: Email/password authentication out of the box
+- **Session Management**: Automatic token handling and refresh
+- **User Profiles**: Extensible user data with custom fields
+- **Secure by Default**: Industry-standard security practices built-in
+
+### **Developer-Friendly API**
+
+- **Intuitive Methods**: CRUD operations that make sense
+- **Error Handling**: Detailed error messages with actionable suggestions
+- **Local Storage Integration**: Automatic session persistence
+- **Zero Configuration**: Works immediately after installation
+
+### **Built to Scale**
+
+- **Global CDN**: Fast response times worldwide
+- **Auto-scaling Infrastructure**: Handles traffic spikes automatically
+- **99.9% Uptime**: Reliable infrastructure you can count on
+- **Performance Monitoring**: Built-in analytics and monitoring
+
+## Use Cases
+
+### **Content Management**
+
+Build blogs, portfolios, or documentation sites with dynamic content management.
+
+```typescript
+// Create a blog post
+await db.createDocument("posts", {
+  title: "My Amazing Post",
+  content: "...",
+  author: currentUser.id,
+  published: true,
+});
+```
+
+### **E-commerce Applications**
+
+Manage products, orders, and customer data effortlessly.
+
+```typescript
+// Add product to cart
+await db.createDocument("cart", {
+  userId: user.id,
+  productId: "prod-123",
+  quantity: 2,
+});
+```
+
+### **Social Applications**
+
+Build social features like user profiles, posts, comments, and messaging.
+
+```typescript
+// Create a social post
+await db.createDocument("posts", {
+  content: "Just shipped a new feature! 🚀",
+  author: user.id,
+  likes: 0,
+  timestamp: new Date(),
+});
+```
+
+### **Analytics Dashboards**
+
+Store and visualize application metrics and user data.
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```ts
+    // Track user events
+    await db.createDocument("events", {
+      userId: user.id,
+      event: "button_click",
+      metadata: { button: "signup", page: "landing" },
+    });
+    ```
+  </Tab>
+
+  <Tab title="Dart"> 
+    ```dart 
+    // Track user events 
+    await db.createDocument("events", { 
+      "userId": user.id, 
+      "event": "button_click", 
+      "metadata": {
+        "button": "signup", 
+        "page": "landing"
+      } 
+    }); 
+    ``` 
+  </Tab>
+
+  <Tab title="Go"> 
+    ```go 
+    // Track user events
+    db.CreateDocument("events", 
+      map[string]any{ 
+        "userId": user.ID, 
+        "event": "button_click", 
+        "metadata": map[string]any{
+          "button": "signup", 
+          "page": "landing",
+        }, 
+      }) 
+    ``` 
+  </Tab>
+
+  <Tab title="http"> 
+    ```http 
+    POST /collections/events 
+    Authorization: Bearer <token>
+    Content-Type: application/json
+
+    {
+      "userId": "USER_ID",
+      "event": "button_click",
+      "metadata": {
+        "button": "signup",
+        "page": "landing"
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## How We Compare
+
+| Feature                  | Cocobase    | Custom Backend |
+| ------------------------ | ----------- | -------------- |
+| **Setup Time**           | 2 minutes   | Weeks/Months   |
+| **TypeScript Support**   | Native      | DIY            |
+| **Learning Curve**       | Minimal     | Very Steep     |
+| **Authentication**       | Built-in    | Build it       |
+| **Developer Experience** | Excellent   | Varies         |
+| **Pricing**              | Transparent | Unpredictable  |
+
+## Framework Integration
+
+Cocobase works beautifully with all modern frameworks:
+
+### **React/Next.js**
+
+```typescript
+const [posts, setPosts] = useState([]);
+
+useEffect(() => {
+  db.listDocuments("posts").then(setPosts);
+}, []);
+```
+
+### **Vue/Nuxt**
+
+```typescript
+const posts = ref([]);
+
+onMounted(async () => {
+  posts.value = await db.listDocuments("posts");
+});
+```
+
+### **React Native**
+
+```typescript
+// Same API, works everywhere
+const posts = await db.listDocuments("posts");
+```
+
+## Success Stories
+
+> _"Cocobase saved us 3 months of backend development. We launched our MVP in 2 weeks and now serve 10,000+ users."_  
+> **- Sarah Chen, Startup Founder**
+
+> _"As a frontend developer, I was always intimidated by backend work. Cocobase made it feel natural and intuitive."_  
+> **- Marcus Rodriguez, Full-stack Developer**
+
+> _"We migrated from a custom Node.js backend to Cocobase and reduced our infrastructure costs by 60% while improving reliability."_  
+> **- Alex Thompson, CTO**
+
+## Getting Started
+
+Ready to build something amazing? Here's how to get started:
+
+1. **Visit** [cocobase.buzz](https://cocobase.buzz)
+2. **Sign up** for a free account
+3. **Create** your first project
+4. **Install** the SDK: `npm install cocobase`
+5. **Start building** awesome things!
+
+```typescript
+import { Cocobase } from "cocobase";
+
+const db = new Cocobase({ apiKey: "your-api-key" });
+
+// You're ready to build!
+```
+
+## Resources
+
+- **[Documentation](https://docs.cocobase.buzz)** - Comprehensive guides and API reference
+- **[Examples](https://github.com/cocobase/examples)** - Sample projects and tutorials
+- **[SDK List](https://cocobase.buzz/sdk)** - All Official SDK repositories
+- **[Community](https://discord.gg/cocobase)** - Join our developer community
+
+## Community & Support
+
+- **Discord**: Join our community for real-time help
+- **Twitter**: [@CocobaseHQ](https://twitter.com/cocobasehq) for updates
+- **Email**: hello@cocobase.buzz for direct support
+- **Issues**: Report bugs on GitHub
+
+## Built With Love
+
+Cocobase is crafted by developers, for developers. We understand the pain of backend complexity because we've lived it. Our mission is to make backend development as enjoyable as frontend development.
+
+**Join thousands of developers who've already made the switch to Cocobase.**
+
+---
+
+<div align="center">
+
+### Ready to eliminate backend complexity forever?
+
+**[Start Building Now →](https://cocobase.buzz)**
+
+_Free tier available. No credit card required._
+
+</div>
