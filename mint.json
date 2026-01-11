@@ -43,7 +43,7 @@
     {
       "name": "GitHub",
       "icon": "github",
-      "url": "https://github.com/cocobase"
+      "url": "https://github.com/cocobase-team"
     },
     {
       "name": "Blog",
@@ -54,10 +54,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "index",
-        "guides/getting-started"
-      ]
+      "pages": ["index", "guides/getting-started"]
     },
     {
       "group": "Core Concepts",
@@ -77,6 +74,15 @@
         "features/file-storage",
         "features/cloud-functions",
         "features/advanced"
+      ]
+    },
+    {
+      "group": "Cloud Functions",
+      "pages": [
+        "cloud-functions/introduction",
+        "cloud-functions/environment",
+        "cloud-functions/quick-reference",
+        "cloud-functions/examples"
       ]
     },
     {
@@ -109,10 +115,7 @@
     },
     {
       "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/authentication"
-      ]
+      "pages": ["api-reference/introduction", "api-reference/authentication"]
     },
     {
       "group": "Collections API",
@@ -154,7 +157,7 @@
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/cocobase",
-    "github": "https://github.com/cocobase",
+    "github": "https://github.com/cocobase-team",
     "discord": "https://discord.gg/cocobase"
   },
   "analytics": {

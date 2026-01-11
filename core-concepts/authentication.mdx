@@ -30,6 +30,7 @@ Cocobase provides a complete authentication system with user registration, login
     // Login
     const session = await db.auth.login("user@example.com", "securePassword123");
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -52,6 +53,7 @@ Cocobase provides a complete authentication system with user registration, login
       password: 'securePassword123',
     );
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -69,6 +71,7 @@ Cocobase provides a complete authentication system with user registration, login
     // Login
     session, err := client.Login(ctx, "user@example.com", "securePassword123")
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -88,6 +91,7 @@ Cocobase provides a complete authentication system with user registration, login
     # Login
     session = db.auth.login("user@example.com", "securePassword123")
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -114,6 +118,7 @@ Cocobase provides a complete authentication system with user registration, login
         "password": "securePassword123"
       }'
     ```
+
   </Tab>
 </Tabs>
 
@@ -149,7 +154,7 @@ Create new user accounts with email and password:
     **Response:**
     ```json
     {
-      "_id": "user_123abc",
+      "id": "user_123abc",
       "email": "alice@example.com",
       "data": {
         "full_name": "Bob Smith",
@@ -164,6 +169,7 @@ Create new user accounts with email and password:
       "token": "eyJhbGc..."
     }
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -189,6 +195,7 @@ Create new user accounts with email and password:
       },
     );
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -210,6 +217,7 @@ Create new user accounts with email and password:
         },
     })
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -232,6 +240,7 @@ Create new user accounts with email and password:
         }
     )
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -257,11 +266,8 @@ Create new user accounts with email and password:
 </Tabs>
 
 <Note>
-  Password requirements:
-  - Minimum 8 characters
-  - At least one uppercase letter
-  - At least one lowercase letter
-  - At least one number
+  Password requirements: - Minimum 8 characters - At least one uppercase letter
+  - At least one lowercase letter - At least one number
 </Note>
 
 ## User Login
@@ -294,6 +300,7 @@ Authenticate users and get access tokens:
       console.log("User is logged in:", currentUser);
     }
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -313,6 +320,7 @@ Authenticate users and get access tokens:
       print('User is logged in: $currentUser');
     }
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -328,6 +336,7 @@ Authenticate users and get access tokens:
 
     // Token is automatically stored and used for future requests
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -343,6 +352,7 @@ Authenticate users and get access tokens:
     if current_user:
         print(f"User is logged in: {current_user}")
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -361,7 +371,7 @@ Authenticate users and get access tokens:
     {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
       "user": {
-        "_id": "user_123abc",
+        "id": "user_123abc",
         "email": "alice@example.com",
         "data": { ... }
       }
@@ -373,6 +383,7 @@ Authenticate users and get access tokens:
     curl -X GET https://api.cocobase.buzz/collections/posts \
       -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
     ```
+
   </Tab>
 </Tabs>
 
@@ -396,6 +407,7 @@ Retrieve the currently authenticated user:
     // Fetch fresh user data from server
     const freshUser = await db.auth.fetchCurrentUser();
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -410,6 +422,7 @@ Retrieve the currently authenticated user:
       print('No user logged in');
     }
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -424,6 +437,7 @@ Retrieve the currently authenticated user:
     fmt.Printf("Logged in as: %s\n", user.Email)
     fmt.Printf("User data: %+v\n", user.Data)
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -437,6 +451,7 @@ Retrieve the currently authenticated user:
     else:
         print("No user logged in")
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -467,6 +482,7 @@ Update user data after authentication:
 
     console.log("Updated user:", updatedUser);
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -484,6 +500,7 @@ Update user data after authentication:
 
     print('Updated user: $updatedUser');
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -547,6 +564,7 @@ End the user session:
     // Verify logout
     const user = db.auth.getCurrentUser(); // Returns null
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -559,6 +577,7 @@ End the user session:
     // Verify logout
     final user = await db.getCurrentUser(); // Returns null
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -571,6 +590,7 @@ End the user session:
 
     fmt.Println("User logged out")
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -580,6 +600,7 @@ End the user session:
 
     print("User logged out")
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -602,26 +623,22 @@ End the user session:
     ```
   </Tab>
 
-  <Tab title="Dart">
-    ```dart
-    await db.changePassword(
-      oldPassword: 'oldPassword123',
-      newPassword: 'newPassword456',
-    );
-    ```
-  </Tab>
+{" "}
+<Tab title="Dart">
+  ```dart await db.changePassword( oldPassword: 'oldPassword123', newPassword:
+  'newPassword456', ); ```
+</Tab>
 
-  <Tab title="Go">
-    ```go
-    err := client.ChangePassword(ctx, "oldPassword123", "newPassword456")
-    ```
-  </Tab>
+{" "}
+<Tab title="Go">
+  ```go err := client.ChangePassword(ctx, "oldPassword123", "newPassword456")
+  ```
+</Tab>
 
-  <Tab title="Python">
-    ```python
-    db.auth.change_password("oldPassword123", "newPassword456")
-    ```
-  </Tab>
+{" "}
+<Tab title="Python">
+  ```python db.auth.change_password("oldPassword123", "newPassword456") ```
+</Tab>
 
   <Tab title="HTTP">
     ```bash
@@ -646,23 +663,20 @@ End the user session:
     ```
   </Tab>
 
-  <Tab title="Dart">
-    ```dart
-    await db.requestPasswordReset(email: 'user@example.com');
-    ```
-  </Tab>
+{" "}
+<Tab title="Dart">
+  ```dart await db.requestPasswordReset(email: 'user@example.com'); ```
+</Tab>
 
-  <Tab title="Go">
-    ```go
-    err := client.RequestPasswordReset(ctx, "user@example.com")
-    ```
-  </Tab>
+{" "}
+<Tab title="Go">
+  ```go err := client.RequestPasswordReset(ctx, "user@example.com") ```
+</Tab>
 
-  <Tab title="Python">
-    ```python
-    db.auth.request_password_reset("user@example.com")
-    ```
-  </Tab>
+{" "}
+<Tab title="Python">
+  ```python db.auth.request_password_reset("user@example.com") ```
+</Tab>
 
   <Tab title="HTTP">
     ```bash
@@ -686,26 +700,23 @@ End the user session:
     ```
   </Tab>
 
-  <Tab title="Dart">
-    ```dart
-    await db.resetPassword(
-      token: 'reset_token_from_email',
-      newPassword: 'newPassword123',
-    );
-    ```
-  </Tab>
+{" "}
+<Tab title="Dart">
+  ```dart await db.resetPassword( token: 'reset_token_from_email', newPassword:
+  'newPassword123', ); ```
+</Tab>
 
-  <Tab title="Go">
-    ```go
-    err := client.ResetPassword(ctx, "reset_token_from_email", "newPassword123")
-    ```
-  </Tab>
+{" "}
+<Tab title="Go">
+  ```go err := client.ResetPassword(ctx, "reset_token_from_email",
+  "newPassword123") ```
+</Tab>
 
-  <Tab title="Python">
-    ```python
-    db.auth.reset_password("reset_token_from_email", "newPassword123")
-    ```
-  </Tab>
+{" "}
+<Tab title="Python">
+  ```python db.auth.reset_password("reset_token_from_email", "newPassword123")
+  ```
+</Tab>
 
   <Tab title="HTTP">
     ```bash
@@ -743,6 +754,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     const session = await db.auth.handleOAuthCallback("google", code);
     console.log("User logged in:", session.user);
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -762,6 +774,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
       code: authorizationCode,
     );
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -775,6 +788,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     // Handle callback
     session, err := client.HandleOAuthCallback(ctx, "google", authorizationCode)
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -789,6 +803,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     # Handle callback
     session = db.auth.handle_oauth_callback("google", authorization_code)
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -810,10 +825,12 @@ Authenticate users with Google, GitHub, and other OAuth providers:
         "code": "AUTHORIZATION_CODE_FROM_GOOGLE"
       }'
     ```
+
   </Tab>
 </Tabs>
 
 **Supported OAuth Providers:**
+
 - Google
 - GitHub
 - Facebook
@@ -837,6 +854,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     // Verify 2FA setup with code from authenticator app
     await db.auth.verify2FA("123456");
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -850,6 +868,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     // Verify 2FA
     await db.verify2FA(code: '123456');
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -866,6 +885,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     // Verify 2FA
     err = client.Verify2FA(ctx, "123456")
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -879,6 +899,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
     # Verify 2FA
     db.auth.verify_2fa("123456")
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -895,6 +916,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
         "code": "123456"
       }'
     ```
+
   </Tab>
 </Tabs>
 
@@ -916,6 +938,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
       }
     }
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -935,6 +958,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
       }
     }
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -950,6 +974,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
         }
     }
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -963,6 +988,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
         # Complete login with 2FA
         db.auth.verify_2fa_login(code)
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -984,6 +1010,7 @@ Authenticate users with Google, GitHub, and other OAuth providers:
         "code": "123456"
       }'
     ```
+
   </Tab>
 </Tabs>
 
@@ -1013,6 +1040,7 @@ Manage user roles and permissions:
     // Update user role (admin only)
     await db.auth.updateUserRole("user_id_123", "moderator");
     ```
+
   </Tab>
 
   <Tab title="Dart">
@@ -1033,6 +1061,7 @@ Manage user roles and permissions:
       // Show admin features
     }
     ```
+
   </Tab>
 
   <Tab title="Go">
@@ -1049,6 +1078,7 @@ Manage user roles and permissions:
         // Show admin features
     }
     ```
+
   </Tab>
 
   <Tab title="Python">
@@ -1069,6 +1099,7 @@ Manage user roles and permissions:
         # Show admin features
         pass
     ```
+
   </Tab>
 
   <Tab title="HTTP">
@@ -1094,8 +1125,8 @@ Complete example for React applications:
 
 ```typescript
 // hooks/useAuth.ts
-import { useState, useEffect } from 'react';
-import { db } from '@/lib/cocobase';
+import { useState, useEffect } from "react";
+import { db } from "@/lib/cocobase";
 
 export function useAuth() {
   const [user, setUser] = useState(null);
@@ -1130,8 +1161,8 @@ export function useAuth() {
 // components/LoginForm.tsx
 function LoginForm() {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1139,7 +1170,7 @@ function LoginForm() {
       await login(email, password);
       // Redirect to dashboard
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
     }
   };
 
@@ -1321,20 +1352,13 @@ Common authentication errors and how to handle them:
     ```
   </Tab>
 
-  <Tab title="Python">
-    ```python
-    try:
-        db.auth.login(email, password)
-    except InvalidCredentialsError:
-        print("Invalid email or password")
-    except TwoFactorRequiredError:
-        print("2FA code required")
-    except UserNotFoundError:
-        print("User not found")
-    except CocobaseError as e:
-        print(f"Authentication error: {e}")
-    ```
-  </Tab>
+{" "}
+<Tab title="Python">
+  ```python try: db.auth.login(email, password) except InvalidCredentialsError:
+  print("Invalid email or password") except TwoFactorRequiredError: print("2FA
+  code required") except UserNotFoundError: print("User not found") except
+  CocobaseError as e: print(f"Authentication error: {e}") ```
+</Tab>
 
   <Tab title="HTTP">
     HTTP status codes:
@@ -1359,14 +1383,15 @@ Common authentication errors and how to handle them:
     // ❌ Bad
     const password = "hardcoded_password123";
     ```
+
   </Accordion>
 
-  <Accordion title="Token Security">
-    Tokens are automatically stored securely:
-    - **Browser**: localStorage (with HttpOnly flag)
-    - **Mobile**: Secure storage (Keychain/Keystore)
-    - **Server**: Memory or secure storage backend
-  </Accordion>
+{" "}
+<Accordion title="Token Security">
+  Tokens are automatically stored securely: - **Browser**: localStorage (with
+  HttpOnly flag) - **Mobile**: Secure storage (Keychain/Keystore) - **Server**:
+  Memory or secure storage backend
+</Accordion>
 
   <Accordion title="Session Management">
     Implement automatic token refresh and session validation:
@@ -1396,13 +1421,21 @@ Common authentication errors and how to handle them:
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="CRUD Operations" icon="database" href="/features/crud-operations">
+  <Card
+    title="CRUD Operations"
+    icon="database"
+    href="/features/crud-operations"
+  >
     Learn to create, read, update, and delete data
   </Card>
   <Card title="User Profiles" icon="user" href="/examples/user-profiles">
     Build complete user profile management
   </Card>
-  <Card title="Protected Routes" icon="shield" href="/examples/protected-routes">
+  <Card
+    title="Protected Routes"
+    icon="shield"
+    href="/examples/protected-routes"
+  >
     Secure your application routes
   </Card>
   <Card title="Social Login" icon="users" href="/examples/social-login">

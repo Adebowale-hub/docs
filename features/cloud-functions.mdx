@@ -44,17 +44,17 @@ def main():
 Each cloud function gets a unique execution URL:
 
 ```
-https://your-domain.com/functions/{function_id}/execute
+https://api.cocobase.buzz/functions/{function_id}/execute
 ```
 
 Call it with GET or POST requests:
 
 ```bash
 # GET request with query parameters
-curl "https://your-domain.com/functions/abc123/execute?name=John&age=25"
+curl "https://api.cocobase.buzz/functions/abc123/execute?name=John&age=25"
 
 # POST request with JSON body
-curl -X POST https://your-domain.com/functions/abc123/execute \
+curl -X POST https://api.cocobase.buzz/functions/abc123/execute \
   -H "Content-Type: application/json" \
   -d '{"name": "John", "age": 25}'
 ```
@@ -350,20 +350,20 @@ def main():
 
 Use operator suffixes to filter data:
 
-| Operator | Suffix | Example | Description |
-|----------|--------|---------|-------------|
-| Equal | (none) or `_eq` | `status="published"` | Exact match |
-| Not Equal | `_ne` | `status_ne="draft"` | Not equal |
-| Greater Than | `_gt` | `price_gt="100"` | Greater than |
-| Greater or Equal | `_gte` | `age_gte="18"` | Greater than or equal |
-| Less Than | `_lt` | `price_lt="1000"` | Less than |
-| Less or Equal | `_lte` | `stock_lte="10"` | Less than or equal |
-| Contains | `_contains` | `title_contains="python"` | String contains |
-| Starts With | `_startswith` | `name_startswith="john"` | String starts with |
-| Ends With | `_endswith` | `email_endswith="@gmail.com"` | String ends with |
-| In Array | `_in` | `status_in="published,draft"` | Value in list |
-| Not In Array | `_notin` | `category_notin="spam,nsfw"` | Value not in list |
-| Is Null | `_isnull` | `deleted_at_isnull="true"` | Check if null |
+| Operator         | Suffix          | Example                       | Description           |
+| ---------------- | --------------- | ----------------------------- | --------------------- |
+| Equal            | (none) or `_eq` | `status="published"`          | Exact match           |
+| Not Equal        | `_ne`           | `status_ne="draft"`           | Not equal             |
+| Greater Than     | `_gt`           | `price_gt="100"`              | Greater than          |
+| Greater or Equal | `_gte`          | `age_gte="18"`                | Greater than or equal |
+| Less Than        | `_lt`           | `price_lt="1000"`             | Less than             |
+| Less or Equal    | `_lte`          | `stock_lte="10"`              | Less than or equal    |
+| Contains         | `_contains`     | `title_contains="python"`     | String contains       |
+| Starts With      | `_startswith`   | `name_startswith="john"`      | String starts with    |
+| Ends With        | `_endswith`     | `email_endswith="@gmail.com"` | String ends with      |
+| In Array         | `_in`           | `status_in="published,draft"` | Value in list         |
+| Not In Array     | `_notin`        | `category_notin="spam,nsfw"`  | Value not in list     |
+| Is Null          | `_isnull`       | `deleted_at_isnull="true"`    | Check if null         |
 
 **Examples:**
 
@@ -427,7 +427,8 @@ posts = db.query("posts", **{
 **Auto-Relationship Detection:**
 
 Relationships are automatically detected based on field naming:
-- `{field}_id` - Single reference
+
+- `{field}id` - Single reference
 - `{field}_ids` - Multiple references
 
 ```python
@@ -1032,20 +1033,20 @@ Your backend provides IntelliSense data:
 
 Cloud functions have access to these Python standard library modules without import statements:
 
-| Module | Description | Common Uses |
-|--------|-------------|-------------|
-| `json` | JSON encoding/decoding | Parse API responses, serialize data |
-| `datetime` | Date and time class | Current time, timestamps |
-| `timedelta` | Time duration class | Add/subtract time, expiration |
-| `time` | Time utilities | Delays, timestamps, timing |
-| `math` | Mathematical functions | Calculations, rounding |
-| `re` | Regular expressions | Pattern matching, validation |
-| `secrets` | **Cryptographically secure random** | **OTP generation, tokens, passwords** |
-| `uuid` | UUID generation | Unique identifiers |
-| `hashlib` | Hash functions | MD5, SHA256, data integrity |
-| `base64` | Base64 encoding | Encode/decode binary data |
-| `string` | String constants | ASCII letters, digits, punctuation |
-| `collections` | Data structures | Counter, defaultdict, deque |
+| Module        | Description                         | Common Uses                           |
+| ------------- | ----------------------------------- | ------------------------------------- |
+| `json`        | JSON encoding/decoding              | Parse API responses, serialize data   |
+| `datetime`    | Date and time class                 | Current time, timestamps              |
+| `timedelta`   | Time duration class                 | Add/subtract time, expiration         |
+| `time`        | Time utilities                      | Delays, timestamps, timing            |
+| `math`        | Mathematical functions              | Calculations, rounding                |
+| `re`          | Regular expressions                 | Pattern matching, validation          |
+| `secrets`     | **Cryptographically secure random** | **OTP generation, tokens, passwords** |
+| `uuid`        | UUID generation                     | Unique identifiers                    |
+| `hashlib`     | Hash functions                      | MD5, SHA256, data integrity           |
+| `base64`      | Base64 encoding                     | Encode/decode binary data             |
+| `string`      | String constants                    | ASCII letters, digits, punctuation    |
+| `collections` | Data structures                     | Counter, defaultdict, deque           |
 
 ### Examples
 

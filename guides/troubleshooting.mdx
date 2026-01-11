@@ -23,45 +23,44 @@ Error: API request failed (status: 401)
 1. **Verify API Key is Correct**
 
    <Tabs>
-   <Tab title="Flutter">
-   ```dart
-   // Check your API key is correct
-   final config = CocobaseConfig(
-     apiKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
-   );
-   ```
-   </Tab>
+<Tab title="Flutter">
+```dart
+// Check your API key is correct
+final config = CocobaseConfig(
+  apiKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
+);
+```
+</Tab>
 
    <Tab title="JavaScript">
-   ```javascript
-   const config = {
-     apiKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
-   };
-   ```
-   </Tab>
+```javascript
+const config = {
+  apiKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
+};
+```
+</Tab>
 
    <Tab title="Python">
-   ```python
-   # Cloud Functions
-   # Verify API key in dashboard settings
-   ```
+     ```python # Cloud Functions # Verify API key in dashboard settings ```
    </Tab>
 
    <Tab title="Go">
-   ```go
-   config := cocobase.Config{
-       APIKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
-   }
-   ```
-   </Tab>
-   </Tabs>
+```go
+config := cocobase.Config{
+    APIKey: "YOUR_API_KEY_HERE",  // Copy from dashboard
+}
+```
+</Tab>
+</Tabs>
 
 2. **Check API Key Format**
+
    - API keys are typically 32-64 characters
    - Should be alphanumeric
    - Don't add quotes or extra spaces
 
 3. **Verify API Key is Active**
+
    - Go to CocoBase Dashboard
    - Check if the API key is enabled
    - Check expiration date
@@ -208,8 +207,8 @@ SocketException: Failed to connect
 
    ```javascript
    const config = {
-     apiKey: 'YOUR_KEY',
-     timeout: 60000,  // 60 seconds
+     apiKey: "YOUR_KEY",
+     timeout: 60000, // 60 seconds
    };
    ```
 
@@ -236,6 +235,7 @@ Certificate verification failed
    ```
 
 2. **Check Device Date/Time**
+
    - SSL certificates are time-sensitive
    - Ensure device date/time is correct
 
@@ -347,7 +347,7 @@ final page2 = await db.listDocuments("books", filters: {
 
 ## Type Conversion Errors
 
-### Issue: "type '_InternalLinkedHashMap<String, dynamic>' is not a subtype"
+### Issue: "type '\_InternalLinkedHashMap<String, dynamic>' is not a subtype"
 
 **Cause:** Type mismatch in `fromJson()` method
 
@@ -637,6 +637,7 @@ final subtitle = (json['subtitle'] as String?) ?? 'No subtitle';
 ### Issue: "Function execution timeout"
 
 **Causes:**
+
 - Heavy computation
 - Database query taking too long
 - External API call delay
@@ -743,14 +744,15 @@ import 'package:dio/dio.dart';
 
 final dio = Dio();
 dio.interceptors.add(
-  LogInterceptor(
-    requestBody: true,
-    responseBody: true,
-    requestHeader: true,
-    responseHeader: true,
-  ),
+LogInterceptor(
+requestBody: true,
+responseBody: true,
+requestHeader: true,
+responseHeader: true,
+),
 );
-```
+
+````
 </Tab>
 
 <Tab title="JavaScript">
@@ -765,7 +767,8 @@ axios.interceptors.response.use(response => {
   console.log('Response:', response);
   return response;
 });
-```
+````
+
 </Tab>
 
 <Tab title="Go">
@@ -894,6 +897,7 @@ await db.createDocument('books', data);
 ### Q: Why are my queries slow?
 
 **A:** Common causes:
+
 - Missing indexes on queried fields
 - Fetching too many documents (use pagination)
 - Populating too many relationships
@@ -936,6 +940,7 @@ def backup_data():
 ### Q: Why isn't my converter working?
 
 **A:** Make sure you:
+
 1. Registered the converter: `CocobaseConverters.register<Book>(Book.fromJson)`
 2. Used the correct type parameter: `db.listDocuments<Book>("books")`
 3. Defined `fromJson()` factory method correctly
@@ -947,12 +952,14 @@ def backup_data():
 ### Resources
 
 1. **Documentation**
+
    - [Getting Started](/guides/getting-started)
    - [Features](/features/crud-operations)
    - [Best Practices](/guides/best-practices)
 
 2. **Community**
-   - GitHub Issues: [cocobase/issues](https://github.com/cocobase/issues)
+
+   - GitHub Issues: [cocobase/issues](https://github.com/cocobase-team/issues)
    - Stack Overflow: Tag questions with `cocobase`
    - Discord: [Join our community](https://discord.gg/cocobase)
 
@@ -998,17 +1005,17 @@ final books = await db.listDocuments("books");
 
 ## Error Code Reference
 
-| Code | Meaning | Common Cause |
-|------|---------|--------------|
-| 400 | Bad Request | Invalid data format, missing required fields |
-| 401 | Unauthorized | Invalid API key, expired session |
-| 403 | Forbidden | Insufficient permissions |
-| 404 | Not Found | Resource doesn't exist |
-| 409 | Conflict | Duplicate entry (e.g., email already exists) |
-| 429 | Too Many Requests | Rate limit exceeded |
-| 500 | Internal Server Error | Server-side error |
-| 502 | Bad Gateway | Temporary server issue |
-| 503 | Service Unavailable | Server maintenance or overload |
+| Code | Meaning               | Common Cause                                 |
+| ---- | --------------------- | -------------------------------------------- |
+| 400  | Bad Request           | Invalid data format, missing required fields |
+| 401  | Unauthorized          | Invalid API key, expired session             |
+| 403  | Forbidden             | Insufficient permissions                     |
+| 404  | Not Found             | Resource doesn't exist                       |
+| 409  | Conflict              | Duplicate entry (e.g., email already exists) |
+| 429  | Too Many Requests     | Rate limit exceeded                          |
+| 500  | Internal Server Error | Server-side error                            |
+| 502  | Bad Gateway           | Temporary server issue                       |
+| 503  | Service Unavailable   | Server maintenance or overload               |
 
 ---
 

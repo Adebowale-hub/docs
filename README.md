@@ -7,15 +7,18 @@ This documentation covers all features of Cocobase across all supported SDKs (Ja
 ## 📚 Documentation Structure
 
 ### **Getting Started**
+
 - [Welcome](index.mdx) - Introduction to Cocobase
 - [Quick Start](guides/getting-started.mdx) - Get up and running in minutes
 
 ### **Core Concepts**
+
 - [Authentication](core-concepts/authentication.mdx) - User management and sessions
 - [Collections & Documents](core-concepts/collections.mdx) - Data organization
 - [Data Types](core-concepts/data-types.mdx) - Supported data types and type safety
 
 ### **Features**
+
 - [CRUD Operations](features/crud-operations.mdx) - Create, read, update, delete
 - [Query & Filtering](features/querying.mdx) - Advanced data querying
 - [Real-time Updates](features/realtime.mdx) - WebSocket subscriptions
@@ -25,10 +28,12 @@ This documentation covers all features of Cocobase across all supported SDKs (Ja
 - [Advanced Features](features/advanced.mdx) - Batch operations, aggregations
 
 ### **Guides**
+
 - [Best Practices](guides/best-practices.mdx) - Security, performance, optimization
 - [Troubleshooting](guides/troubleshooting.mdx) - Common issues and solutions
 
 ### **Examples**
+
 - [Complete Applications](examples/complete-apps.mdx) - Full app examples
   - Todo App
   - E-commerce Store
@@ -38,10 +43,13 @@ This documentation covers all features of Cocobase across all supported SDKs (Ja
 ## 🎯 Key Features
 
 ### **Topic-Based Organization**
+
 Unlike traditional SDK-specific documentation, this is organized by **topics** with multi-language tabs, making it easy to understand features regardless of your programming language.
 
 ### **Multi-Language Support**
+
 Every code example is shown in:
+
 - JavaScript/TypeScript
 - Dart/Flutter
 - Go
@@ -49,6 +57,7 @@ Every code example is shown in:
 - HTTP/cURL
 
 ### **Comprehensive Coverage**
+
 - 600+ code examples
 - 12+ query operators documented
 - 5 complete application examples
@@ -58,6 +67,7 @@ Every code example is shown in:
 ## 🚀 Quick Navigation
 
 ### I want to...
+
 - **Get started quickly** → [Getting Started](guides/getting-started.mdx)
 - **Add user authentication** → [Authentication](core-concepts/authentication.mdx)
 - **Store and retrieve data** → [CRUD Operations](features/crud-operations.mdx)
@@ -70,6 +80,7 @@ Every code example is shown in:
 ## 📖 SDK Documentation Sources
 
 This unified documentation consolidates information from:
+
 - `js-docs/` - JavaScript/TypeScript SDK (17 files, ~120KB)
 - `flutter-doc/` - Flutter/Dart SDK (12 files, ~185KB)
 - `cocobe golang/` - Go SDK (12 files, ~175KB)
@@ -81,6 +92,7 @@ This unified documentation consolidates information from:
 ## 🛠️ Technology Stack
 
 This documentation is built with:
+
 - **MDX** - Markdown with JSX components
 - **Mintlify** - Documentation platform
 - **Multi-language tabs** - Unified code examples
@@ -110,7 +122,7 @@ Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify
 
 Found an error or want to improve the docs?
 
-1. **Report issues**: [GitHub Issues](https://github.com/cocobase/docs/issues)
+1. **Report issues**: [GitHub Issues](https://github.com/cocobase-team/docs/issues)
 2. **Suggest improvements**: Open a pull request
 3. **Ask questions**: [Discord Community](https://discord.gg/cocobase)
 
@@ -119,16 +131,18 @@ Found an error or want to improve the docs?
 - **Website**: [cocobase.buzz](https://cocobase.buzz)
 - **Dashboard**: [cocobase.buzz/dashboard](https://cocobase.buzz/dashboard)
 - **Discord**: [discord.gg/cocobase](https://discord.gg/cocobase)
-- **GitHub**: [github.com/cocobase](https://github.com/cocobase)
-- **Examples**: [github.com/cocobase/examples](https://github.com/cocobase/examples)
+- **GitHub**: [github.com/cocobase-team](https://github.com/cocobase-team)
+- **Examples**: [github.com/cocobase-team/examples](https://github.com/cocobase-team/examples)
 
 ## Need Help?
 
 ### Troubleshooting
+
 - If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
 - If a page loads as a 404: Make sure you are running in a folder with a valid `mint.json`.
 
 ### Resources
+
 - [Mintlify documentation](https://mintlify.com/docs)
 - [Cocobase Troubleshooting Guide](guides/troubleshooting.mdx)
 

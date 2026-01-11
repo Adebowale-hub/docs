@@ -29,7 +29,8 @@ final config = CocobaseConfig(apiKey: apiKey);
 final prefs = await SharedPreferences.getInstance();
 final apiKey = prefs.getString('cocobase_api_key');
 final config = CocobaseConfig(apiKey: apiKey!);
-```
+
+````
 </Tab>
 
 <Tab title="JavaScript">
@@ -51,7 +52,8 @@ dotenv.config();
 const config = {
   apiKey: process.env.COCOBASE_API_KEY,
 };
-```
+````
+
 </Tab>
 
 <Tab title="Python">
@@ -62,12 +64,14 @@ config = CocobaseConfig(
 )
 
 # Good - use environment variables
+
 import os
 
 config = CocobaseConfig(
-    api_key=os.getenv('COCOBASE_API_KEY')
+api_key=os.getenv('COCOBASE_API_KEY')
 )
-```
+
+````
 </Tab>
 
 <Tab title="Go">
@@ -81,7 +85,8 @@ config := cocobase.Config{
 config := cocobase.Config{
     APIKey: os.Getenv("COCOBASE_API_KEY"),
 }
-```
+````
+
 </Tab>
 </Tabs>
 
@@ -118,7 +123,8 @@ def main():
 
     # Proceed with authenticated operations
     return {"user_id": user.id}
-```
+
+````
 </Tab>
 
 <Tab title="Flutter">
@@ -133,7 +139,8 @@ Future<void> performSecureOperation() async {
   // Proceed with operation
   await db.createDocument("posts", data);
 }
-```
+````
+
 </Tab>
 
 <Tab title="JavaScript">
@@ -145,10 +152,11 @@ async function performSecureOperation() {
     throw new Error('Authentication required');
   }
 
-  // Proceed with operation
-  await db.createDocument('posts', data);
+// Proceed with operation
+await db.createDocument('posts', data);
 }
-```
+
+````
 </Tab>
 </Tabs>
 
@@ -168,7 +176,7 @@ def main():
     # Perform admin operation
     result = perform_admin_action()
     return {"result": result}
-```
+````
 
 **Validate Token Expiration:**
 
@@ -210,7 +218,8 @@ def main():
     # Proceed with registration
     user = db.create_app_user(email, password)
     return {"user": user}
-```
+
+````
 </Tab>
 
 <Tab title="Flutter">
@@ -240,7 +249,8 @@ Future<void> createPost(String title, String content) async {
     'content': content.trim(),
   });
 }
-```
+````
+
 </Tab>
 </Tabs>
 
@@ -249,14 +259,14 @@ Future<void> createPost(String title, String content) async {
 ```javascript
 function sanitizeInput(input) {
   // Remove HTML tags
-  return input.replace(/<[^>]*>/g, '');
+  return input.replace(/<[^>]*>/g, "");
 }
 
 function createPost(title, content) {
   const sanitizedTitle = sanitizeInput(title.trim());
   const sanitizedContent = sanitizeInput(content.trim());
 
-  return db.createDocument('posts', {
+  return db.createDocument("posts", {
     title: sanitizedTitle,
     content: sanitizedContent,
   });
@@ -332,23 +342,23 @@ final config = CocobaseConfig(
 ```javascript
 // Good - normalized structure
 const user = {
-  id: 'user-123',
-  name: 'John Doe',
-  company_id: 'company-456'  // Reference to company
+  id: "user-123",
+  name: "John Doe",
+  company_id: "company-456", // Reference to company
 };
 
 const company = {
-  id: 'company-456',
-  name: 'TechCorp',
-  address: '123 Main St'
+  id: "company-456",
+  name: "TechCorp",
+  address: "123 Main St",
 };
 
 // Bad - denormalized (duplicated data)
 const user = {
-  id: 'user-123',
-  name: 'John Doe',
-  company_name: 'TechCorp',      // Duplicated
-  company_address: '123 Main St'  // Duplicated
+  id: "user-123",
+  name: "John Doe",
+  company_name: "TechCorp", // Duplicated
+  company_address: "123 Main St", // Duplicated
 };
 ```
 
@@ -379,7 +389,7 @@ document = {
 **Follow Naming Conventions:**
 
 ```dart
-// Single references use _id suffix
+// Single references use id suffix
 {
   "author_id": "user-123",
   "category_id": "cat-456",
@@ -434,24 +444,24 @@ collection_schema = {
 ```javascript
 // Bad - too many indexes
 const schema = {
-  name: 'posts',
+  name: "posts",
   indexes: [
-    { field: 'status' },
-    { field: 'title' },
-    { field: 'content' },     // Large text - don't index
-    { field: 'views' },       // Changes frequently - expensive
-    { field: 'is_draft' },    // Low cardinality - not useful
-  ]
+    { field: "status" },
+    { field: "title" },
+    { field: "content" }, // Large text - don't index
+    { field: "views" }, // Changes frequently - expensive
+    { field: "is_draft" }, // Low cardinality - not useful
+  ],
 };
 
 // Good - selective indexing
 const schema = {
-  name: 'posts',
+  name: "posts",
   indexes: [
-    { field: 'status' },
-    { field: 'author_id' },
-    { field: 'created_at' },
-  ]
+    { field: "status" },
+    { field: "author_id" },
+    { field: "created_at" },
+  ],
 };
 ```
 
@@ -502,9 +512,9 @@ async function getAllUsers() {
   let hasMore = true;
 
   while (hasMore) {
-    const result = await db.listDocuments('users', {
+    const result = await db.listDocuments("users", {
       limit: perPage,
-      offset: (page - 1) * perPage
+      offset: (page - 1) * perPage,
     });
 
     users.push(...result);
@@ -516,7 +526,7 @@ async function getAllUsers() {
 }
 
 // Bad - fetch everything at once
-const users = await db.listDocuments('users');
+const users = await db.listDocuments("users");
 ```
 
 **Select Only Needed Fields:**
@@ -646,7 +656,8 @@ def main():
     except Exception as e:
         print(f"Error: {str(e)}")
         return {"error": "Internal server error"}, 500
-```
+
+````
 </Tab>
 
 <Tab title="Go">
@@ -677,7 +688,8 @@ func performOperation() error {
     fmt.Printf("Success: %s\n", doc.ID)
     return nil
 }
-```
+````
+
 </Tab>
 </Tabs>
 
@@ -727,9 +739,7 @@ class RateLimiter {
     const now = Date.now();
 
     // Remove old requests outside the window
-    this.requests = this.requests.filter(
-      time => now - time < this.windowMs
-    );
+    this.requests = this.requests.filter((time) => now - time < this.windowMs);
 
     // Check if we're at the limit
     if (this.requests.length >= this.maxRequests) {
@@ -748,7 +758,7 @@ const limiter = new RateLimiter(100, 60000); // 100 requests per minute
 
 async function makeRequest() {
   await limiter.acquire();
-  return db.listDocuments('posts');
+  return db.listDocuments("posts");
 }
 ```
 
@@ -866,11 +876,11 @@ for (var post in posts) {
 ```javascript
 // Bad - individual creates
 for (const book of books) {
-  await db.createDocument('books', book);
+  await db.createDocument("books", book);
 }
 
 // Good - batch create
-await db.batchCreateDocuments('books', books);
+await db.batchCreateDocuments("books", books);
 ```
 
 ### 4. Implement Lazy Loading
@@ -926,27 +936,27 @@ void main() {
 
 ```javascript
 // JavaScript example
-describe('User authentication', () => {
+describe("User authentication", () => {
   let db;
 
   beforeEach(() => {
     db = new Cocobase({ apiKey: process.env.TEST_API_KEY });
   });
 
-  it('should register a new user', async () => {
+  it("should register a new user", async () => {
     const user = await db.register({
-      email: 'test@example.com',
-      password: 'SecurePassword123!',
+      email: "test@example.com",
+      password: "SecurePassword123!",
     });
 
-    expect(user.email).toBe('test@example.com');
+    expect(user.email).toBe("test@example.com");
     expect(user.id).toBeDefined();
   });
 
-  it('should login with correct credentials', async () => {
+  it("should login with correct credentials", async () => {
     const result = await db.login({
-      email: 'test@example.com',
-      password: 'SecurePassword123!',
+      email: "test@example.com",
+      password: "SecurePassword123!",
     });
 
     expect(result.token).toBeDefined();

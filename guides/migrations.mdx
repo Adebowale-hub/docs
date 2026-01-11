@@ -1,0 +1,535 @@
+---
+title: "Database Migrations"
+description: "Import data from other databases and manage migrations in Cocobase"
+icon: "database"
+---
+
+# Database Migrations
+
+Migrate your existing data from other databases to Cocobase or export your data for backup and portability.
+
+<Note>
+  All migration operations are performed through the Cocobase Dashboard. No code required.
+</Note>
+
+## Overview
+
+Cocobase supports:
+
+- **Import from other databases** - MongoDB, Firebase, PostgreSQL, MySQL, and more
+- **CSV/JSON imports** - Bulk import data from files
+- **Export options** - Backup your data in multiple formats
+- **Migration validation** - Preview and verify before importing
+- **Incremental migrations** - Import data in batches
+
+---
+
+## Import from MongoDB
+
+### Prerequisites
+
+Before starting the migration:
+
+1. Export your MongoDB data to JSON format
+2. Ensure you have the correct collection structure
+3. Have your MongoDB connection string ready (if importing directly)
+
+### Steps
+
+1. **Access Migration Tool**
+   - Go to your Cocobase Dashboard
+   - Navigate to your project
+   - Click **Settings** → **Migrations**
+   - Select **Import Data**
+
+2. **Choose Source**
+   - Select **MongoDB** as the source database
+   - Choose import method:
+     - **Direct Connection** - Connect to your MongoDB instance
+     - **File Upload** - Upload exported JSON files
+
+3. **Configure Connection** (Direct Connection)
+   - Enter MongoDB connection string
+   - Test connection
+   - Select databases and collections to import
+
+4. **Map Fields**
+   - Review collection names (will become Cocobase collections)
+   - Map field types if needed
+   - Preview sample documents
+
+5. **Run Migration**
+   - Choose import mode:
+     - **Replace** - Clear existing data and import
+     - **Merge** - Add to existing data
+     - **Skip duplicates** - Only import new documents
+   - Click **Start Import**
+   - Monitor progress in real-time
+
+6. **Verify Data**
+   - Check imported document counts
+   - Review sample documents
+   - Test queries and relationships
+
+### File Upload Format
+
+If uploading JSON files, use this format:
+
+```json
+{
+  "collection": "users",
+  "documents": [
+    {
+      "name": "Alice",
+      "email": "alice@example.com",
+      "age": 28
+    },
+    {
+      "name": "Bob",
+      "email": "bob@example.com",
+      "age": 32
+    }
+  ]
+}
+```
+
+---
+
+## Import from Firebase
+
+### Prerequisites
+
+1. Export your Firestore data
+2. Have your Firebase project credentials
+3. Understand your Firestore collection structure
+
+### Steps
+
+1. **Export from Firebase**
+   - In Firebase Console, go to **Firestore Database**
+   - Click **Import/Export**
+   - Export to Cloud Storage or download JSON
+
+2. **Access Cocobase Migration Tool**
+   - Dashboard → Project → Settings → Migrations
+   - Select **Import Data** → **Firebase/Firestore**
+
+3. **Upload Data**
+   - Upload exported Firestore JSON files
+   - Or provide Firebase Admin SDK credentials for direct import
+
+4. **Configure Import**
+   - Map Firestore collections to Cocobase collections
+   - Handle subcollections (flatten or nest)
+   - Configure timestamp conversion
+
+5. **Import & Verify**
+   - Start import process
+   - Monitor progress
+   - Verify document structure and counts
+
+### Firebase-Specific Considerations
+
+- **Timestamps**: Firestore timestamps are automatically converted to ISO 8601 strings
+- **Subcollections**: Can be flattened or kept as nested objects
+- **References**: Document references become ID strings
+- **GeoPoints**: Converted to `{ lat, lng }` objects
+
+---
+
+## Import from SQL Databases
+
+Migrate from PostgreSQL, MySQL, or other SQL databases.
+
+### Prerequisites
+
+1. Database connection credentials
+2. Schema understanding (tables → collections)
+3. Exported SQL dump or CSV files
+
+### Steps
+
+1. **Export SQL Data to JSON/CSV**
+
+   **PostgreSQL:**
+   ```bash
+   # Export to JSON
+   psql -d your_database -c "COPY (SELECT row_to_json(t) FROM users t) TO '/tmp/users.json'"
+
+   # Export to CSV
+   psql -d your_database -c "\COPY users TO '/tmp/users.csv' CSV HEADER"
+   ```
+
+   **MySQL:**
+   ```bash
+   # Export to CSV
+   mysql -u user -p -D database -e "SELECT * FROM users" > users.csv
+   ```
+
+2. **Access Migration Tool**
+   - Dashboard → Settings → Migrations
+   - Select **SQL Database** or **CSV Import**
+
+3. **Upload Files**
+   - Upload CSV or JSON files
+   - Map SQL columns to document fields
+   - Define data types
+
+4. **Handle Relationships**
+   - Foreign keys become document references
+   - Configure relationship mapping
+   - Choose to denormalize or keep references
+
+5. **Import Data**
+   - Review preview
+   - Start import
+   - Verify relationships and data integrity
+
+### SQL to NoSQL Mapping
+
+| SQL Concept | Cocobase Equivalent |
+|-------------|---------------------|
+| Table | Collection |
+| Row | Document |
+| Column | Field |
+| Primary Key | `id` field |
+| Foreign Key | Reference field (stores ID) |
+| Join | Population/Denormalization |
+
+---
+
+## CSV Import
+
+Import data from CSV files.
+
+### CSV Format Requirements
+
+```csv
+name,email,age,active,tags
+Alice,alice@example.com,28,true,"javascript,react"
+Bob,bob@example.com,32,true,"python,django"
+Charlie,charlie@example.com,25,false,"go,kubernetes"
+```
+
+### Steps
+
+1. **Prepare CSV File**
+   - First row must be headers (field names)
+   - Use standard CSV format
+   - Arrays can be comma-separated in quotes
+   - Booleans: `true`/`false`
+   - Dates: ISO 8601 format
+
+2. **Upload to Cocobase**
+   - Dashboard → Migrations → Import CSV
+   - Select collection name
+   - Upload CSV file
+
+3. **Configure Field Types**
+   - Auto-detected types are shown
+   - Adjust if needed:
+     - String, Number, Boolean
+     - Date (ISO format)
+     - Array (comma-separated)
+     - Object (JSON string)
+
+4. **Import Options**
+   - **Header row**: Skip first row if headers
+   - **Delimiter**: Comma, semicolon, tab
+   - **Import mode**: Replace, merge, or skip duplicates
+
+5. **Import & Verify**
+   - Preview first 10 rows
+   - Click **Import**
+   - Check imported documents
+
+### Advanced CSV Features
+
+**Nested Objects:**
+```csv
+name,email,address.city,address.zipCode
+Alice,alice@example.com,New York,10001
+```
+
+**Arrays:**
+```csv
+name,tags
+Alice,"javascript,react,nodejs"
+```
+
+**Dates:**
+```csv
+name,createdAt
+Alice,2024-01-15T10:30:00Z
+```
+
+---
+
+## JSON Import
+
+Import bulk data from JSON files.
+
+### JSON Format
+
+**Single Collection:**
+```json
+{
+  "collection": "users",
+  "documents": [
+    {
+      "name": "Alice",
+      "email": "alice@example.com",
+      "age": 28,
+      "tags": ["javascript", "react"]
+    }
+  ]
+}
+```
+
+**Multiple Collections:**
+```json
+{
+  "collections": [
+    {
+      "name": "users",
+      "documents": [...]
+    },
+    {
+      "name": "posts",
+      "documents": [...]
+    }
+  ]
+}
+```
+
+### Steps
+
+1. **Prepare JSON File**
+   - Valid JSON format
+   - Follow structure above
+   - Maximum 10 MB per file
+
+2. **Upload to Dashboard**
+   - Migrations → Import JSON
+   - Drag and drop or select file
+
+3. **Review & Import**
+   - Preview document count
+   - Check field structure
+   - Start import
+
+---
+
+## Export Data
+
+Export your Cocobase data for backup or migration.
+
+### Export Formats
+
+1. **JSON** - Full document structure
+2. **CSV** - Flat structure (nested objects become columns)
+3. **MongoDB** - MongoDB-compatible JSON
+4. **SQL** - SQL INSERT statements
+
+### Steps
+
+1. **Access Export Tool**
+   - Dashboard → Settings → Export Data
+
+2. **Select Collections**
+   - Choose specific collections or all
+   - Apply filters (optional)
+   - Select date range (optional)
+
+3. **Choose Format**
+   - Select export format
+   - Configure options:
+     - Include metadata (`id`, `createdAt`, etc.)
+     - Flatten nested objects
+     - Date format
+
+4. **Download**
+   - Click **Export**
+   - Download file when ready
+   - Files are also emailed to you
+
+### Automated Backups
+
+Enable automatic daily/weekly backups:
+
+1. Dashboard → Settings → Backups
+2. Enable **Automatic Backups**
+3. Choose frequency (daily/weekly)
+4. Select retention period
+5. Backups are stored in your cloud storage
+
+---
+
+## Migration Best Practices
+
+<AccordionGroup>
+<Accordion title="Test with Sample Data First">
+Before migrating your entire database:
+
+1. Export a small sample (100-1000 documents)
+2. Test import process
+3. Verify data integrity and structure
+4. Check relationships and queries
+5. Then proceed with full migration
+</Accordion>
+
+<Accordion title="Plan for Downtime">
+For production migrations:
+
+1. Schedule migration during low-traffic periods
+2. Enable maintenance mode
+3. Communicate with users
+4. Have rollback plan ready
+5. Monitor error logs
+</Accordion>
+
+<Accordion title="Validate Data After Import">
+After migration completes:
+
+```typescript
+// Check document counts
+const userCount = await db.listDocuments('users');
+console.log(`Imported ${userCount.length} users`);
+
+// Verify relationships
+const posts = await db.listDocuments('posts', {
+  populate: ['authorId']
+});
+
+// Test critical queries
+const activeUsers = await db.listDocuments('users', {
+  filters: { active: true }
+});
+```
+</Accordion>
+
+<Accordion title="Handle Large Datasets">
+For databases with millions of documents:
+
+1. **Batch Import**: Import in chunks of 10,000 documents
+2. **Use Direct Connection**: Faster than file uploads
+3. **Disable Indexes**: Temporarily disable indexes during import
+4. **Monitor Resources**: Watch memory and CPU usage
+5. **Incremental Import**: Import collections one at a time
+</Accordion>
+
+<Accordion title="Preserve Relationships">
+When migrating relational data:
+
+1. Import parent collections first (users, categories)
+2. Then import dependent collections (posts, comments)
+3. Use consistent ID mapping
+4. Verify foreign key references
+5. Test population queries
+</Accordion>
+</AccordionGroup>
+
+---
+
+## Common Migration Scenarios
+
+### Scenario 1: MongoDB to Cocobase
+
+```bash
+# 1. Export from MongoDB
+mongoexport --db=mydb --collection=users --out=users.json --jsonArray
+
+# 2. Upload to Cocobase Dashboard
+# 3. Select MongoDB import
+# 4. Upload users.json
+```
+
+### Scenario 2: Firebase to Cocobase
+
+1. Firebase Console → Firestore → Export
+2. Download JSON export
+3. Cocobase Dashboard → Migrations → Firebase Import
+4. Upload and map collections
+
+### Scenario 3: PostgreSQL to Cocobase
+
+```sql
+-- Export to JSON
+COPY (
+  SELECT row_to_json(t)
+  FROM (
+    SELECT * FROM users
+  ) t
+) TO '/tmp/users.json';
+```
+
+Upload to Cocobase Dashboard.
+
+### Scenario 4: Spreadsheet to Cocobase
+
+1. Export Excel/Sheets to CSV
+2. Clean data (remove formulas, formatting)
+3. Upload CSV to Cocobase
+4. Map columns to fields
+
+---
+
+## Troubleshooting
+
+### Import Fails
+
+**Problem**: Import stops with error
+
+**Solutions**:
+- Check file format (valid JSON/CSV)
+- Reduce file size (split into smaller files)
+- Remove special characters from field names
+- Verify data types match
+
+### Duplicate Documents
+
+**Problem**: Same documents imported multiple times
+
+**Solutions**:
+- Use **Skip duplicates** mode
+- Ensure unique IDs
+- Clean collection before re-importing
+
+### Missing Relationships
+
+**Problem**: Document references broken after import
+
+**Solutions**:
+- Import parent collections first
+- Verify ID mapping
+- Use population to test references
+- Re-run import with correct ID mapping
+
+### Performance Issues
+
+**Problem**: Import is very slow
+
+**Solutions**:
+- Use direct database connection instead of file upload
+- Import in smaller batches
+- Temporarily disable indexes
+- Upgrade to higher plan for more resources
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Role-Based Access" icon="shield" href="/guides/role-based-access">
+    Configure permissions and roles
+  </Card>
+  <Card title="Email Integration" icon="envelope" href="/guides/email-integration">
+    Set up email templates and automation
+  </Card>
+  <Card title="Best Practices" icon="star" href="/guides/best-practices">
+    Learn optimization techniques
+  </Card>
+  <Card title="CRUD Operations" icon="database" href="/features/crud-operations">
+    Start working with your migrated data
+  </Card>
+</CardGroup>
