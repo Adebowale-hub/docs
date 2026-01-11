@@ -1,0 +1,234 @@
+---
+title: Installation
+description: Get started with Cocobase in minutes - install the SDK and start building
+---
+
+# Installation
+
+Get Cocobase running in your project in minutes. Choose your language and follow the simple setup steps.
+
+## Prerequisites
+
+Before installing Cocobase, make sure you have:
+
+- An account at [cocobase.buzz](https://cocobase.buzz)
+- Your project API key (found in your dashboard)
+- A package manager installed (npm, yarn, pub, pip, or go modules)
+
+## Install the SDK
+
+Choose your preferred language and install the Cocobase SDK:
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```bash
+    # Using npm
+    npm install cocobase
+
+    # Using yarn
+    yarn add cocobase
+
+    # Using pnpm
+    pnpm add cocobase
+    ```
+  </Tab>
+
+  <Tab title="Dart">
+    ```bash
+    # Add to pubspec.yaml, then run
+    flutter pub add coco_base_flutter
+
+    # Or manually add to pubspec.yaml:
+    # dependencies:
+    #   coco_base_flutter: ^latest_version
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```bash
+    # Using go modules
+    go get github.com/cocobase-team/cocobase-go
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```bash
+    # Using pip
+    pip install cocobase
+
+    # Using poetry
+    poetry add cocobase
+    ```
+  </Tab>
+</Tabs>
+
+## Initialize Cocobase
+
+After installation, initialize Cocobase in your project with your API key:
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```typescript
+    
+    ```
+  </Tab>
+
+  <Tab title="Dart">
+    ```dart
+    
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```go
+    
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    
+    ```
+  </Tab>
+</Tabs>
+
+## Configuration Options
+
+The Cocobase client accepts these configuration options:
+
+- **`apiKey`** (required) - Your project API key from the dashboard
+- **`baseUrl`** (optional) - Custom API endpoint (defaults to `https://api.cocobase.buzz`)
+- **`timeout`** (optional) - Request timeout in milliseconds (defaults to 30000)
+
+> [!TIP]
+> Store your API key in environment variables, not in your code. Use `.env` files or your framework's environment configuration.
+
+## Environment Variables
+
+Set up your API key using environment variables:
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```bash
+    # .env file
+    VITE_COCOBASE_API_KEY=your_api_key_here
+    # or
+    REACT_APP_COCOBASE_API_KEY=your_api_key_here
+    # or
+    NEXT_PUBLIC_COCOBASE_API_KEY=your_api_key_here
+    ```
+  </Tab>
+
+  <Tab title="Dart">
+    ```bash
+    # .env file or use dart-define
+    COCOBASE_API_KEY=your_api_key_here
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```bash
+    # .env file
+    COCOBASE_API_KEY=your_api_key_here
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```bash
+    # .env file
+    COCOBASE_API_KEY=your_api_key_here
+    ```
+  </Tab>
+</Tabs>
+
+## Verify Installation
+
+Test your installation by creating a simple document:
+
+<Tabs>
+  <Tab title="JavaScript">
+    ```typescript
+    
+    ```
+  </Tab>
+
+  <Tab title="Dart">
+    ```dart
+    
+    ```
+  </Tab>
+
+  <Tab title="Go">
+    ```go
+    
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    
+    ```
+  </Tab>
+</Tabs>
+
+If the code runs without errors, you're all set! 🎉
+
+## TypeScript Support
+
+For JavaScript/TypeScript projects, Cocobase includes full type definitions. No additional `@types` packages needed.
+
+```typescript
+// Types are automatically available
+import { Cocobase, CocobaseConfig } from "cocobase";
+```
+
+## Next Steps
+
+Now that Cocobase is installed, you can:
+
+- **[Quick Start Guide](/getting-started/quickstart)** - Build your first app
+- **[Authentication](/authentication/overview)** - Add user authentication
+- **[Data Management](/data/overview)** - Work with collections and documents
+- **[API Reference](/api-reference)** - Explore all available methods
+
+## Troubleshooting
+
+### Package Not Found
+
+If you get a "package not found" error, make sure:
+
+- You're connected to the internet
+- Your package manager is up to date
+- You have the correct package name for your language
+
+### API Key Issues
+
+If you get authentication errors:
+
+- Verify your API key is correct (no extra spaces)
+- Check that you're using the right environment variable name
+- Ensure your API key has the necessary permissions in the dashboard
+
+### Module Import Errors
+
+For JavaScript/TypeScript:
+- Ensure your bundler supports ES modules
+- Check that you're using the correct import syntax
+- Restart your development server after installation
+
+> [!NOTE]
+> Need help? Join our [Discord community](https://discord.gg/cocobase) or check the [FAQ](/support/faq).
+
+## Framework-Specific Guides
+
+Cocobase works with all modern frameworks. Here are quick links:
+
+- **React/Next.js** - [Integration Guide](/frameworks/react)
+- **Vue/Nuxt** - [Integration Guide](/frameworks/vue)
+- **Angular** - [Integration Guide](/frameworks/angular)
+- **Flutter** - [Integration Guide](/frameworks/flutter)
+- **React Native** - [Integration Guide](/frameworks/react-native)
+
+---
+
+**Ready to start building?** Head to the [Quick Start Guide](/getting-started/quickstart) →
